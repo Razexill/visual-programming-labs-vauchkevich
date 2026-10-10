@@ -1,3 +1,1 @@
-# visual-programming-labs-vauchkevich
-
-тут будет текст
+﻿# Visual Programming Labs
