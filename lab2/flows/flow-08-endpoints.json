@@ -1,0 +1,149 @@
+[
+    {
+        "id": "27d1f629bf9102e3",
+        "type": "http in",
+        "z": "b3ebd3ff9c45ef14",
+        "name": "",
+        "url": "/api/text",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 290,
+        "y": 160,
+        "wires": [
+            [
+                "7fc430c3ec74be24"
+            ]
+        ]
+    },
+    {
+        "id": "18277d596a039049",
+        "type": "http response",
+        "z": "b3ebd3ff9c45ef14",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "7fc430c3ec74be24",
+        "type": "function",
+        "z": "b3ebd3ff9c45ef14",
+        "name": "function 3",
+        "func": "msg.payload = \"Привет! Это простой текстовый ответ от Node-RED.\";\nmsg.statusCode = 200; // Статус \"OK\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 160,
+        "wires": [
+            [
+                "18277d596a039049"
+            ]
+        ]
+    },
+    {
+        "id": "f99c045147d27f2a",
+        "type": "http in",
+        "z": "b3ebd3ff9c45ef14",
+        "name": "",
+        "url": "/api/info",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 290,
+        "y": 260,
+        "wires": [
+            [
+                "f8128aa95c762213"
+            ]
+        ]
+    },
+    {
+        "id": "185854eb804660a9",
+        "type": "http response",
+        "z": "b3ebd3ff9c45ef14",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f8128aa95c762213",
+        "type": "function",
+        "z": "b3ebd3ff9c45ef14",
+        "name": "function 4",
+        "func": "msg.payload = {\n    application: \"Node-RED\",\n    labNumber: 2\n};\nmsg.statusCode = 200;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 260,
+        "wires": [
+            [
+                "185854eb804660a9"
+            ]
+        ]
+    },
+    {
+        "id": "8bfe157a634a699d",
+        "type": "http in",
+        "z": "b3ebd3ff9c45ef14",
+        "name": "",
+        "url": "/api/items/:id",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 300,
+        "y": 360,
+        "wires": [
+            [
+                "973c622ca24ef315"
+            ]
+        ]
+    },
+    {
+        "id": "2032f2e699b883c0",
+        "type": "http response",
+        "z": "b3ebd3ff9c45ef14",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "973c622ca24ef315",
+        "type": "function",
+        "z": "b3ebd3ff9c45ef14",
+        "name": "function 5",
+        "func": "// 1. Получаем параметры из запроса\nlet id = msg.req.params.id; // Из path: /api/items/123\nlet limit = msg.req.query.limit || 10; // Из query: ?limit=5\n\n// 2. Проверка на ошибку 400 (Bad Request)\n// Если id не передан или не является числом\nif (!id || isNaN(id)) {\n    msg.statusCode = 400;\n    msg.payload = { error: \"Bad Request: ID должен быть числом\" };\n    return msg;\n}\n\n// 3. Имитация базы данных\nconst database = {\n    \"1\": { name: \"Яблоко\", price: 100 },\n    \"2\": { name: \"Банан\", price: 50 },\n    \"3\": { name: \"Вишня\", price: 200 }\n};\n\n// 4. Проверка на ошибку 404 (Not Found)\n// Если такого id нет в нашей \"базе\"\nif (!database[id]) {\n    msg.statusCode = 404;\n    msg.payload = { error: \"Not Found: Товар с id \" + id + \" не найден\" };\n    return msg;\n}\n\n// 5. Успешный ответ (200 OK)\nmsg.statusCode = 200;\nmsg.payload = {\n    id: id,\n    item: database[id],\n    limit: limit\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 360,
+        "wires": [
+            [
+                "2032f2e699b883c0"
+            ]
+        ]
+    }
+]

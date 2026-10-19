@@ -1,0 +1,118 @@
+[
+    {
+        "id": "1308e41d5fa1719f",
+        "type": "inject",
+        "z": "1034e40eb175410c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "$random()",
+        "payloadType": "jsonata",
+        "x": 230,
+        "y": 180,
+        "wires": [
+            [
+                "d7e03d651479e924"
+            ]
+        ]
+    },
+    {
+        "id": "c770b272e3881a2d",
+        "type": "mqtt in",
+        "z": "1034e40eb175410c",
+        "name": "",
+        "topic": "student/Vauchkevich/lab2/test",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "c3358b1d2b913234",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 220,
+        "y": 320,
+        "wires": [
+            [
+                "2fddcf94c133f7a5"
+            ]
+        ]
+    },
+    {
+        "id": "d7e03d651479e924",
+        "type": "mqtt out",
+        "z": "1034e40eb175410c",
+        "name": "",
+        "topic": "student/Vauchkevich/lab2/test",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c3358b1d2b913234",
+        "x": 550,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "2fddcf94c133f7a5",
+        "type": "debug",
+        "z": "1034e40eb175410c",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "c3358b1d2b913234",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

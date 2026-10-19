@@ -1,0 +1,134 @@
+[
+    {
+        "id": "a4ace069c9572be8",
+        "type": "inject",
+        "z": "03e3c3c554177e8a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"name\": \"Vauchkevich\", \"lab\": 2, \"timestamp\": \"test\"}",
+        "payloadType": "json",
+        "x": 270,
+        "y": 280,
+        "wires": [
+            [
+                "f72ef004e2ca2289"
+            ]
+        ]
+    },
+    {
+        "id": "f72ef004e2ca2289",
+        "type": "function",
+        "z": "03e3c3c554177e8a",
+        "name": "function 9",
+        "func": "msg.payload = {\n    name: msg.payload.name,\n    lab: msg.payload.lab,\n    time: new Date().toISOString()\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 280,
+        "wires": [
+            [
+                "1dc3df32405e44ed"
+            ]
+        ]
+    },
+    {
+        "id": "1dc3df32405e44ed",
+        "type": "file",
+        "z": "03e3c3c554177e8a",
+        "name": "",
+        "filename": "/data/lab2-data.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 730,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ab388d23547ab63e",
+        "type": "file in",
+        "z": "03e3c3c554177e8a",
+        "name": "",
+        "filename": "/data/lab2-data.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 490,
+        "y": 420,
+        "wires": [
+            [
+                "7c848be4b1a24845"
+            ]
+        ]
+    },
+    {
+        "id": "67f57b36430f2a7b",
+        "type": "inject",
+        "z": "03e3c3c554177e8a",
+        "name": "Читать",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 230,
+        "y": 420,
+        "wires": [
+            [
+                "ab388d23547ab63e"
+            ]
+        ]
+    },
+    {
+        "id": "7c848be4b1a24845",
+        "type": "debug",
+        "z": "03e3c3c554177e8a",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 420,
+        "wires": []
+    }
+]

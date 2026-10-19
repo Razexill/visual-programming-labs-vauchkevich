@@ -1,0 +1,116 @@
+[
+    {
+        "id": "3c4493adfdd728b0",
+        "type": "inject",
+        "z": "cfc8b52fb3f24a44",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "lab2/Vauchkevich/switch",
+        "payload": "5",
+        "payloadType": "num",
+        "x": 300,
+        "y": 240,
+        "wires": [
+            [
+                "3eb2b091f2ac6cb4"
+            ]
+        ]
+    },
+    {
+        "id": "f8cda71832c38eb0",
+        "type": "debug",
+        "z": "cfc8b52fb3f24a44",
+        "name": ">10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "3eb2b091f2ac6cb4",
+        "type": "function",
+        "z": "cfc8b52fb3f24a44",
+        "name": "function 2",
+        "func": "// 1. Получаем число из inject\nlet input = msg.payload; \n\n// 2. Создаем массив чисел (например, множители)\nconst multipliers = [2, 3, 4]; \nlet results = []; // Пустой массив для результатов\n\n// 3. Проверяем, что пришло именно число (if/else)\nif (typeof input === 'number') {\n    \n    // 4. Используем цикл for, чтобы пройтись по массиву\n    for (let i = 0; i < multipliers.length; i++) {\n        // Умножаем входное число на каждый элемент массива\n        let multiplied = input * multipliers[i];\n        results.push(multiplied);\n    }\n\n    // 5. Формируем объект, который вернем дальше\n    msg.payload = {\n        original: input,          // То, что мы отправили\n        multiplyBy2: input * 2,  // Твое условие: умножаем на 2\n        allResults: results,     // Результаты умножения на массив\n        status: \"Успех\"\n    };\n    \n} else {\n    // Если отправили не число, возвращаем ошибку\n    msg.payload = {\n        error: \"Ошибка! Вы отправили не число.\",\n        status: \"Ошибка\"\n    };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 240,
+        "wires": [
+            [
+                "374f5f51162927f9"
+            ]
+        ]
+    },
+    {
+        "id": "374f5f51162927f9",
+        "type": "switch",
+        "z": "cfc8b52fb3f24a44",
+        "name": "",
+        "property": "payload.original",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "10",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 240,
+        "wires": [
+            [
+                "f8cda71832c38eb0"
+            ],
+            [
+                "7670186a36387f57"
+            ]
+        ]
+    },
+    {
+        "id": "7670186a36387f57",
+        "type": "debug",
+        "z": "cfc8b52fb3f24a44",
+        "name": "otherwise",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 280,
+        "wires": []
+    }
+]

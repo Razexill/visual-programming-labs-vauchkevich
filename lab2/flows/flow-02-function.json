@@ -1,0 +1,68 @@
+[
+    {
+        "id": "b56485900c15f2fa",
+        "type": "inject",
+        "z": "625cfe00eb96aa7f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "lab2/Vauchkevich/function",
+        "payload": "11",
+        "payloadType": "num",
+        "x": 230,
+        "y": 260,
+        "wires": [
+            [
+                "bbf846da28c10d4c"
+            ]
+        ]
+    },
+    {
+        "id": "476b0171e8fbb8b6",
+        "type": "debug",
+        "z": "625cfe00eb96aa7f",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "bbf846da28c10d4c",
+        "type": "function",
+        "z": "625cfe00eb96aa7f",
+        "name": "function 1",
+        "func": "let input = msg.payload;\nconst numbers = [1, 2, 3, 4, 5];\nlet sum = 0;\n\nfor (let i = 0; i < numbers.length; i++) {\n    sum += numbers[i];\n}\n\nif (typeof input === 'number') {\n    msg.payload = { original: input, sum: sum, type: 'number' };\n} else {\n    msg.payload = { original: input, sum: sum, type: typeof input };\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 260,
+        "wires": [
+            [
+                "476b0171e8fbb8b6"
+            ]
+        ]
+    }
+]

@@ -1,0 +1,67 @@
+[
+    {
+        "id": "9a204ecc9e20045f",
+        "type": "inject",
+        "z": "0b4da401fb92fde6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"name\": \"Yaraslau\", \"surname\": \"Vauchkevich\", \"group\": \"UIR-241\"}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 220,
+        "wires": [
+            [
+                "bff4a4b64b6bd2e5"
+            ]
+        ]
+    },
+    {
+        "id": "54c790def29ffd58",
+        "type": "debug",
+        "z": "0b4da401fb92fde6",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "bff4a4b64b6bd2e5",
+        "type": "template",
+        "z": "0b4da401fb92fde6",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"student\": \"{{payload.name}} {{payload.surname}}\",\n  \"group\": \"{{payload.group}}\",\n  \"status\": \"active\",\n  \"year\": 2026\n}",
+        "output": "json",
+        "x": 460,
+        "y": 220,
+        "wires": [
+            [
+                "54c790def29ffd58"
+            ]
+        ]
+    }
+]

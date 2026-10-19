@@ -1,0 +1,72 @@
+[
+    {
+        "id": "e39a293d1e6042de",
+        "type": "inject",
+        "z": "54f003ac12850b7b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 260,
+        "y": 300,
+        "wires": [
+            [
+                "f276fc7c2d365685"
+            ]
+        ]
+    },
+    {
+        "id": "4c6a4a6e9a617ff6",
+        "type": "debug",
+        "z": "54f003ac12850b7b",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "f276fc7c2d365685",
+        "type": "http request",
+        "z": "54f003ac12850b7b",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://v2.jokeapi.dev/joke/Any",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 470,
+        "y": 300,
+        "wires": [
+            [
+                "4c6a4a6e9a617ff6"
+            ]
+        ]
+    }
+]

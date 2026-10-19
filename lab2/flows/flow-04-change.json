@@ -1,0 +1,89 @@
+[
+    {
+        "id": "948224df3df59d5f",
+        "type": "inject",
+        "z": "91ab72e33c402e20",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Test",
+        "payloadType": "str",
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "7437a4f334b6dc4d"
+            ]
+        ]
+    },
+    {
+        "id": "1e911fce9dcda3b5",
+        "type": "debug",
+        "z": "91ab72e33c402e20",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "7437a4f334b6dc4d",
+        "type": "change",
+        "z": "91ab72e33c402e20",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "lab2/Vauchkevich/change",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "msg",
+                "to": "$now()",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Hello from Change node",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 240,
+        "wires": [
+            [
+                "1e911fce9dcda3b5"
+            ]
+        ]
+    }
+]

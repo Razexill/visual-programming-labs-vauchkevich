@@ -1,0 +1,210 @@
+[
+    {
+        "id": "24141d33020ed409",
+        "type": "telegram receiver",
+        "z": "75f8656893aabe79",
+        "name": "",
+        "bot": "d24e9ee34b692dc1",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "hasinput": false,
+        "inputs": 0,
+        "handleallupdates": false,
+        "handleprocessupdates": false,
+        "x": 390,
+        "y": 560,
+        "wires": [
+            [
+                "e811e75084b60a2f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "479c47e100ccdc96",
+        "type": "telegram sender",
+        "z": "75f8656893aabe79",
+        "name": "",
+        "bot": "d24e9ee34b692dc1",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 910,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "87db09c35efd6092",
+        "type": "telegram command",
+        "z": "75f8656893aabe79",
+        "name": "",
+        "command": "/start",
+        "description": "",
+        "registercommand": true,
+        "language": "",
+        "scope": "default",
+        "bot": "d24e9ee34b692dc1",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 410,
+        "y": 260,
+        "wires": [
+            [
+                "fc822464863d0b3c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fc822464863d0b3c",
+        "type": "function",
+        "z": "75f8656893aabe79",
+        "name": "function 6",
+        "func": "msg.payload.content = \"Привет! Я бот лабораторной работы №2. Используй /help, чтобы узнать команды.\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 260,
+        "wires": [
+            [
+                "479c47e100ccdc96"
+            ]
+        ]
+    },
+    {
+        "id": "3e9720cfd27f39af",
+        "type": "telegram sender",
+        "z": "75f8656893aabe79",
+        "name": "",
+        "bot": "d24e9ee34b692dc1",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 930,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c875c3eae2120491",
+        "type": "telegram command",
+        "z": "75f8656893aabe79",
+        "name": "",
+        "command": "/help",
+        "description": "",
+        "registercommand": true,
+        "language": "",
+        "scope": "default",
+        "bot": "d24e9ee34b692dc1",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 430,
+        "y": 420,
+        "wires": [
+            [
+                "280e54716e50e650"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "280e54716e50e650",
+        "type": "function",
+        "z": "75f8656893aabe79",
+        "name": "function 7",
+        "func": "msg.payload.content = \"Доступные команды:\\n/start - Приветствие\\n/help - Справка\\n\\nПросто напиши мне что-нибудь, и я повторю!\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 420,
+        "wires": [
+            [
+                "3e9720cfd27f39af"
+            ]
+        ]
+    },
+    {
+        "id": "17575c59b8d27228",
+        "type": "telegram sender",
+        "z": "75f8656893aabe79",
+        "name": "",
+        "bot": "d24e9ee34b692dc1",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 930,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e811e75084b60a2f",
+        "type": "function",
+        "z": "75f8656893aabe79",
+        "name": "function 8",
+        "func": "// Если сообщение начинается с '/', это команда — игнорируем его\nif (msg.payload.content && msg.payload.content.startsWith('/')) {\n    return null;\n}\n// Иначе — возвращаем сообщение обратно\nmsg.payload.content = \"Ты написал: \" + msg.payload.content;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 560,
+        "wires": [
+            [
+                "17575c59b8d27228"
+            ]
+        ]
+    },
+    {
+        "id": "d24e9ee34b692dc1",
+        "type": "telegram bot",
+        "botname": "MyTGBot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "6b26ffa07da847af",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-telegrambot": "19.0.3"
+        }
+    }
+]

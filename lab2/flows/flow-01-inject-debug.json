@@ -1,0 +1,48 @@
+[
+    {
+        "id": "a6b7d354fa8c3ca2",
+        "type": "inject",
+        "z": "72dd0bae305573d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "lab2/Vauchkevich/basic",
+        "payload": "Vauchkevich",
+        "payloadType": "str",
+        "x": 320,
+        "y": 260,
+        "wires": [
+            [
+                "12eaa24c1fd31227"
+            ]
+        ]
+    },
+    {
+        "id": "12eaa24c1fd31227",
+        "type": "debug",
+        "z": "72dd0bae305573d3",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 260,
+        "wires": []
+    }
+]
