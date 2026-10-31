@@ -1,0 +1,86 @@
+{
+  "name": "flow-05-http",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d4f874d4-0e42-4e78-95be-d9118640d6e4",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://api.adviceslip.com/advice",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "ade3cad7-ca94-4f7e-b889-65893fec64ec",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем ответ от HTTP Request\nconst response = $input.first().json;\n\n// Выводим в консоль для проверки\nconsole.log('=== ADVICE SLIP ===');\nconsole.log(JSON.stringify(response, null, 2));\n\n// Возвращаем объект с полем payload\nreturn [\n  {\n    json: {\n      student: 'vauchkevich',\n      payload: response\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "a4fbdde1-0094-4c5d-ab66-a706f452cd3f",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "27ec5664-c0f9-4833-9e7b-1ab6fce35208",
+  "meta": {
+    "instanceId": "d1bde2447409730edd91c15bfdfd3b13d78c17532a90a9e84a5e73182cdb6214"
+  },
+  "nodeGroups": [],
+  "id": "VVt6sKnn0PVrJ7hE",
+  "tags": []
+}
