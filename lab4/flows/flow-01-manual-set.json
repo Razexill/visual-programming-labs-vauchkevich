@@ -1,0 +1,96 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        -16
+      ],
+      "id": "bb477e04-960b-4c20-95f4-1dbe018be6c4",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f24d4adc-8e0e-4133-87fe-fb845ad36922",
+              "name": "payload",
+              "value": "Vauchkevich",
+              "type": "string"
+            },
+            {
+              "id": "091c8c6e-ae75-4dca-8203-9251b0959823",
+              "name": "topic",
+              "value": "lab4/Vauchkevich/basic",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -208,
+        -16
+      ],
+      "id": "fc1e1962-91e8-4d32-945a-d86266acd6b5",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.all();\nconsole.log(data);\nreturn data;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        16,
+        -16
+      ],
+      "id": "b465d511-e1bb-4969-b111-842d1d45cf8e",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "4acc6794-83b2-4031-972e-e868380b7848",
+  "meta": {
+    "instanceId": "d1bde2447409730edd91c15bfdfd3b13d78c17532a90a9e84a5e73182cdb6214"
+  },
+  "nodeGroups": [],
+  "id": "sDEHkAcyR0Cljz8o",
+  "tags": []
+}

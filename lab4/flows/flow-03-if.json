@@ -1,0 +1,139 @@
+{
+  "name": "flow-03-if",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ec74ac0d-bfcf-418c-bdd8-9d72af61c593",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Массив с объектами\nconst fruits = [\n  { name: 'apple', price: 50 },\n  { name: 'banana', price: 20 },\n  { name: 'cherry', price: 300 },\n  { name: 'kiwi', price: 80 }\n];\n\n// let для накопителей\nlet expensiveFruits = [];\nlet totalPrice = 0;\n\n// Цикл for\nfor (let i = 0; i < fruits.length; i++) {\n  const fruit = fruits[i];\n\n  // if / else\n  if (fruit.price > 70) {\n    expensiveFruits.push(fruit.name);\n  } else {\n    // ничего\n  }\n\n  totalPrice = totalPrice + fruit.price;\n}\n\n// Возврат объекта с полем payload\nreturn [\n  {\n    json: {\n      payload: {\n        student: 'vauchkevich',\n        expensiveFruits: expensiveFruits,\n        totalPrice: totalPrice,\n        totalItems: fruits.length\n      }\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "c02926ba-1514-4150-a393-dd4bdadd888d",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 4
+          },
+          "conditions": [
+            {
+              "id": "108d7f3e-ccac-4f9f-84c1-a046a6e103d5",
+              "leftValue": "={{$json.payload.totalPrice}}",
+              "rightValue": 400,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.4,
+      "position": [
+        448,
+        0
+      ],
+      "id": "916ae5ed-ca0d-4cba-8aba-266b83dca472",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        672,
+        -96
+      ],
+      "id": "c366edd1-14d6-46f6-baa1-d59f7198c4f7",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        672,
+        96
+      ],
+      "id": "26824008-d37a-43f5-87cf-91d39c193118",
+      "name": "No Operation, do nothing1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "7bcca3d1-2769-45f4-a9da-73851d6e1689",
+  "meta": {
+    "instanceId": "d1bde2447409730edd91c15bfdfd3b13d78c17532a90a9e84a5e73182cdb6214"
+  },
+  "nodeGroups": [],
+  "id": "hjCi46koYIdlAzsI",
+  "tags": []
+}
