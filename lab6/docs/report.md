@@ -44,48 +44,29 @@
 
 «Как добавить голосовой ввод текста в Kodular с помощью Speech Recognizer?»
 
-## Освоенные компоненты и блоки
+## 5. Освоенные компоненты и блоки
 
-**Компоненты Kodular:**
+**Использованные компоненты Kodular:**
+- Label (для заголовков, вывода результата и фамилии)
+- TextBox (для ввода имени)
+- Button (для запуска логики и навигации)
+- Screen2 (второй экран)
+- TextToSpeech (для озвучивания приветствия)
+- Speech Recognizer (для голосового ввода имени)
 
-Label;
-
-TextBox;
-
-Button;
-
-Screen2;
-
-TextToSpeech;
-
-Speech Recognizer.
-
-**Блоки:**
-
-when Button.Click;
-
-if ... then ... else;
-
-=;
-
-trim;
-
-join;
-
-set Label.Text to;
-
-open another screen;
-
-close screen;
-
-call TextToSpeech.Speak;
-
-call SpeechRecognizer.GetText;
-
-when SpeechRecognizer.AfterGettingText;
-
-get result.
-
+**Использованные блоки (логика):**
+- `when Button.Click` (событие нажатия на кнопку)
+- `if ... then ... else` (условный блок)
+- `=` (сравнение)
+- `trim` (удаление пробелов по краям)
+- `join` (соединение строк)
+- `set Label.Text to` (запись текста в Label)
+- `open another screen` (переход на второй экран)
+- `close screen` (возврат на предыдущий экран)
+- `call TextToSpeech.Speak` (вызов озвучивания)
+- `call SpeechRecognizer.GetText` (запуск распознавания речи)
+- `when SpeechRecognizer.AfterGettingText` (получение результата распознавания)
+- `get result` (получение текста от распознавателя)
 ## Скриншоты
 
 ![Экран 1](../screenshots/design_scr1.png)
